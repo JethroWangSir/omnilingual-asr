@@ -12,7 +12,7 @@ audio_data = [{"waveform": x["array"], "sample_rate": x["sampling_rate"]}
 print(f'Audio Data:\n{audio_data}')
 
 # Run inference
-pipeline = ASRInferencePipeline(model_card="omniASR_LLM_1B")
+pipeline = ASRInferencePipeline(model_card="omniASR_LLM_7B")
 transcriptions = pipeline.transcribe(audio_data, batch_size=2)
 
 # Display results
