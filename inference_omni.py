@@ -1,9 +1,10 @@
 from datasets import load_dataset
 from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
 
-cv = load_dataset("overji/VAD_cn_audio_ds", split="train", streaming=True)
-# print(next(iter(cv)))
-batch = next(cv.iter(20))
+# Load dataset for a specific language (e.g., Ligurian)
+ds = load_dataset("facebook/omnilingual-asr-corpus", "lij_Latn", split="train", streaming=True)
+# print(next(iter(ds)))
+batch = next(ds.iter(5))
 print(f'Batch:\n{batch}')
 
 # Convert to pipeline input format
@@ -16,7 +17,7 @@ pipeline = ASRInferencePipeline(model_card="omniASR_LLM_7B")
 transcriptions = pipeline.transcribe(audio_data, batch_size=2)
 
 # Display results
-for i, (transcription, original_text) in enumerate(zip(transcriptions, batch["text"]), 1):
+for i, (transcription, original_text) in enumerate(zip(transcriptions, batch["raw_text"]), 1):
     print(f"\n Sample {i}:")
     print(f"   Ground Truth: {original_text}")
     print(f"   Predicted:    {transcription}")

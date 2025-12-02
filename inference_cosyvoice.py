@@ -1,9 +1,9 @@
 from datasets import load_dataset
 from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
 
-gv34 = load_dataset("hanamizuki-ai/genshin-voice-v3.4-mandarin", split="train", streaming=True)
-# print(next(iter(gv34)))
-batch = next(gv34.iter(5))
+ds = load_dataset("overji/VAD_cn_audio_ds", split="train", streaming=True)
+# print(next(iter(ds)))
+batch = next(ds.iter(20))
 print(f'Batch:\n{batch}')
 
 # Convert to pipeline input format
