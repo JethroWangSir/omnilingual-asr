@@ -3,6 +3,7 @@ from omnilingual_asr.models.inference.pipeline import ASRInferencePipeline
 
 # Load dataset for a specific language (e.g., Ligurian)
 omni_dataset = load_dataset("facebook/omnilingual-asr-corpus", "lij_Latn", split="train", streaming=True)
+# print(next(iter(omni_dataset)))
 batch = next(omni_dataset.iter(5))
 print(f'Batch:\n{batch}')
 
